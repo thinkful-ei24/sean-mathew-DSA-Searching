@@ -1,6 +1,7 @@
 import React from 'react';
 import Search from './search';
 import {linearSearch, binarySearch} from './searches.js';
+import SearchView from './searchView';
 import NumberListBox from './numberListBox';
 import logo from './logo.svg';
 import './App.css';
@@ -8,7 +9,10 @@ import './App.css';
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {searchNum: '', inputValues: []};
+    this.state = {
+      searchNum: '', 
+      inputValues: []
+    };
     // this.handleChange = this.handleChange.bind(this);
   }
 
@@ -23,9 +27,11 @@ class App extends React.Component {
   }
 
   handleSearchClick() {
-    const count = linearSearch(this.state.inputValues, this.state.searchNum);
+    const linearCount = linearSearch(this.state.inputValues, this.state.searchNum);
+    const binaryCount = binarySearch(this.state.inputValues, this.state.searchNum)
     // TODO: show this in a component
-    console.log(count);
+    console.log('linear', linearCount);
+    console.log('binary', linearCount)
   }
 
   render() {
@@ -34,6 +40,7 @@ class App extends React.Component {
         <Search handleChange={(event) => this.handleSearchValueChange(event)}/>
         <NumberListBox handleChange={(event) => this.handleNumberListChange(event)}/>
         <button onClick={() => this.handleSearchClick()}>Search</button>
+        <SearchView />
       </div>
     )
   }
