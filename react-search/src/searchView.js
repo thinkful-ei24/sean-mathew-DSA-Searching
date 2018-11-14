@@ -4,7 +4,8 @@ import React from 'react';
 export default function SearchView(props) {
   return (
     <div>
-    <p>this is coming soon</p>
+      <h2>{props.title}</h2>
+      <p>Count: {props.count}</p>
     </div>
 
   );

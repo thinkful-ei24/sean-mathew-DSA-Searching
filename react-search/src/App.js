@@ -11,7 +11,9 @@ class App extends React.Component {
     super(props);
     this.state = {
       searchNum: '', 
-      inputValues: []
+      inputValues: [],
+      linearCount: 0,
+      binaryCount: 0
     };
     // this.handleChange = this.handleChange.bind(this);
   }
@@ -29,9 +31,7 @@ class App extends React.Component {
   handleSearchClick() {
     const linearCount = linearSearch(this.state.inputValues, this.state.searchNum);
     const binaryCount = binarySearch(this.state.inputValues, this.state.searchNum)
-    // TODO: show this in a component
-    console.log('linear', linearCount);
-    console.log('binary', linearCount)
+    this.setState({linearCount, binaryCount});
   }
 
   render() {
@@ -40,7 +40,8 @@ class App extends React.Component {
         <Search handleChange={(event) => this.handleSearchValueChange(event)}/>
         <NumberListBox handleChange={(event) => this.handleNumberListChange(event)}/>
         <button onClick={() => this.handleSearchClick()}>Search</button>
-        <SearchView />
+        <SearchView count={this.state.linearCount} title="Linear search" />
+        <SearchView count={this.state.binaryCount} title="Binary search" />
       </div>
     )
   }
